@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed7b1daf999b7075c8e0d141a20ecd91, type: 3}
+  m_Name: Chocolate Chip
+  m_EditorClassIdentifier: Assembly-CSharp::Cookie
+  texture: {fileID: 2800000, guid: 779293ac13de2c35dae4b2d074716f8c, type: 3}
+  cookieType: Chocolate Chip
+  cookieWorth: 1
