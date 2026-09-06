@@ -6,4 +6,5 @@ public class Cookie : ScriptableObject
     public Texture texture;
     public string cookieType;
     public int cookieWorth;
+    public int ID;
 }

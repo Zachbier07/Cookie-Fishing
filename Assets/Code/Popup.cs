@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System.Collections;
 
 public class Popup : MonoBehaviour
 {
@@ -27,5 +28,13 @@ public class Popup : MonoBehaviour
         goalRot = Vector3.zero;
         goalSize = new Vector3(1,1,1);
         cookieNameText.text = cookie.cookieType + " Cookie";
+        StartCoroutine(goAway());
+    }
+
+    IEnumerator goAway()
+    {
+        yield return new WaitForSeconds(2);
+        goalRot = new Vector3(90,180,0);
+        goalSize = new Vector3(0,0,0);
     }
 }

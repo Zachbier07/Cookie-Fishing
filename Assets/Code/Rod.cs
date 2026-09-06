@@ -11,6 +11,7 @@ public class Rod : MonoBehaviour
     [SerializeField] LineRenderer line;
     [SerializeField] Transform top;
     [SerializeField] Popup popup;
+    [SerializeField] Compendium compendium;
     float charge = 0;
     private InputAction castInput;
     [SerializeField]bool lockRod = false;
@@ -34,10 +35,12 @@ public class Rod : MonoBehaviour
         {
             bobber.GetComponent<Rigidbody>().isKinematic = true;
             bobber.transform.position = new Vector3(0,10000,0);
+
             //Actually Catch the cookie
             Cookie cookie = GetComponent<Catch>().catchCookie();
             popup.Show(cookie);
-            Debug.Log("Caught " + cookie.cookieType + " Cookie!");
+            compendium.addOne(cookie.ID);
+
             //Lock casting until let go
             lockRod = true;
             line.enabled = false;
