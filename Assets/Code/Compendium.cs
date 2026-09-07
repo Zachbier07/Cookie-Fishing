@@ -1,9 +1,12 @@
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class Compendium : MonoBehaviour
 {
+    public int money = 0;
+    [SerializeField] TextMeshProUGUI moneyGui;
     [SerializeField] private BoardStats[] boards;
     [SerializeField] private GameObject physicalCompendium;
     [SerializeField] private MonoBehaviour[] disableWhenOpen;
@@ -28,10 +31,21 @@ public class Compendium : MonoBehaviour
             else Cursor.lockState = CursorLockMode.Locked;
             physicalCompendium.SetActive(active);
         }
+        moneyGui.text = "$"+money;
     }
 
     public void addOne(int x)
     {
         boards[x].addOne();
+    }
+
+    public void sellAll()
+    {
+        foreach(BoardStats i in boards)
+        {
+            money += i.sell();
+        }
+
+        Debug.Log("SOLD!");
     }
 }
