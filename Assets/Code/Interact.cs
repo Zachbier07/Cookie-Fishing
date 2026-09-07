@@ -18,7 +18,6 @@ public class Interact : MonoBehaviour
     void Update()
     {   
         if (Physics.Raycast(m_camera.transform.position, m_camera.transform.forward, out hit)) {
-            Debug.Log("Hit: " + hit.transform.name);
             if (hit.transform.GetComponent<Interactable>())
             {
                 text.text = hit.transform.GetComponent<Interactable>().interactText;

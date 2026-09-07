@@ -7,7 +7,6 @@ public class Popup : MonoBehaviour
 {
     [SerializeField] RawImage image;
     [SerializeField] TextMeshProUGUI cookieNameText;
-    bool active  = false;
     RectTransform rTransform;
     Vector3 goalRot = new Vector3(90,180,0);
     Vector3 goalSize = Vector3.zero;
@@ -24,6 +23,12 @@ public class Popup : MonoBehaviour
 
     public void Show(Cookie cookie)
     {
+        //Reset Pos just incase
+        rTransform.eulerAngles = new Vector3(90,180,0);
+        rTransform.localScale = Vector3.zero;
+        StopAllCoroutines();
+
+        //Actually show up
         image.texture = cookie.texture;
         goalRot = Vector3.zero;
         goalSize = new Vector3(1,1,1);
@@ -35,6 +40,6 @@ public class Popup : MonoBehaviour
     {
         yield return new WaitForSeconds(2);
         goalRot = new Vector3(90,180,0);
-        goalSize = new Vector3(0,0,0);
+        goalSize = Vector3.zero;
     }
 }
