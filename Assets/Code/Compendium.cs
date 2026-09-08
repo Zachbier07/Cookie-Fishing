@@ -10,11 +10,14 @@ public class Compendium : MonoBehaviour
     [SerializeField] private BoardStats[] boards;
     [SerializeField] private GameObject physicalCompendium;
     [SerializeField] private MonoBehaviour[] disableWhenOpen;
+    [SerializeField] AudioSource source;
     private InputAction inventory;
+    private InputAction devButton;
     bool active;
     private void Start()
     {
         inventory = InputSystem.actions.FindAction("Inventory");
+        devButton = InputSystem.actions.FindAction("Dev");
         active = physicalCompendium.activeInHierarchy;
     }
 
@@ -31,6 +34,10 @@ public class Compendium : MonoBehaviour
             else Cursor.lockState = CursorLockMode.Locked;
             physicalCompendium.SetActive(active);
         }
+        if (devButton.WasPressedThisFrame())
+        {
+            money += 5;
+        }
         moneyGui.text = "$"+money;
     }
 
@@ -41,11 +48,14 @@ public class Compendium : MonoBehaviour
 
     public void sellAll()
     {
+        bool played = false;
+
         foreach(BoardStats i in boards)
         {
+            int origMoney = 0;
             money += i.sell();
+            if(origMoney != money && !played) {source.Play(); played =true;}
         }
-
         Debug.Log("SOLD!");
     }
 }

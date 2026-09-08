@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 
 public class DockManager : MonoBehaviour
@@ -7,7 +8,8 @@ public class DockManager : MonoBehaviour
     public int docksOwned = 0;
     public int dockPrice;
     [SerializeField] Transform sign;
-    
+    [SerializeField] TextMeshPro costSign;
+    [SerializeField] AudioSource source;
     //To help with spawning
     Transform lastDock;
 
@@ -30,8 +32,10 @@ public class DockManager : MonoBehaviour
     {
         if(comp.money >= dockPrice)
         {
+            source.Play();
             comp.money -= dockPrice;
             dockPrice += dockPrice/5;
+            costSign.text = "$" + dockPrice;
             addDock();
         }
     }

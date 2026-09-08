@@ -17,7 +17,7 @@ public class Interact : MonoBehaviour
     // Update is called once per frame
     void Update()
     {   
-        if (Physics.Raycast(m_camera.transform.position, m_camera.transform.forward, out hit)) {
+        if (Physics.Raycast(m_camera.transform.position, m_camera.transform.forward, out hit,5)) {
             if (hit.transform.GetComponent<Interactable>())
             {
                 text.text = hit.transform.GetComponent<Interactable>().interactText;

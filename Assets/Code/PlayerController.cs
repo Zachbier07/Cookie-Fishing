@@ -57,6 +57,8 @@ public class PlayerController : MonoBehaviour
 
         HandleMovement(moveVector);
         HandleLooking(mouseDelta);
+            
+        if(transform.position.y < 1.75f) transform.position = new Vector3(0,2,0);
     }
 
     private void HandleMovement(Vector2 moveVector)
@@ -91,5 +93,4 @@ public class PlayerController : MonoBehaviour
     {
         jumped = true;
     }
-
 }

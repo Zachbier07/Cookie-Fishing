@@ -10,7 +10,8 @@ public class Popup : MonoBehaviour
     RectTransform rTransform;
     Vector3 goalRot = new Vector3(90,180,0);
     Vector3 goalSize = Vector3.zero;
-
+    [SerializeField] AudioSource soundPlayer;
+    [SerializeField] AudioClip victory;
     void Start()
     {
         rTransform = GetComponent<RectTransform>();
@@ -29,6 +30,7 @@ public class Popup : MonoBehaviour
         StopAllCoroutines();
 
         //Actually show up
+        soundPlayer.PlayOneShot(victory);
         image.texture = cookie.texture;
         goalRot = Vector3.zero;
         goalSize = new Vector3(1,1,1);

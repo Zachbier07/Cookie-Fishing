@@ -8,6 +8,8 @@ public class Bobber : MonoBehaviour
     [SerializeField] private float chancePerFrame;
     [SerializeField] private int framesForBite = 90;
     [SerializeField] private GameObject alert;
+    [SerializeField] AudioClip splash;
+    [SerializeField] AudioClip biteSound;
     private float framesLeft;
     public bool bit;
     public bool inWater = false;
@@ -30,6 +32,7 @@ public class Bobber : MonoBehaviour
         alert.SetActive(bit);
         if(transform.position.y < .15f) 
         {
+            if(!inWater) GetComponent<AudioSource>().PlayOneShot(splash);
             inWater = true;
             transform.position = new Vector3(transform.position.x, 0, transform.position.z);
             rb.isKinematic = true;
@@ -39,6 +42,7 @@ public class Bobber : MonoBehaviour
                 if(chancePerFrame >= Random.Range(0f, 100f))
                 {
                     Debug.Log("Bite!");
+                    GetComponent<AudioSource>().PlayOneShot(biteSound);
                     bit = true;
                 }
             }

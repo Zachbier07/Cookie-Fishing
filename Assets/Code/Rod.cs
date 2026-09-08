@@ -12,6 +12,8 @@ public class Rod : MonoBehaviour
     [SerializeField] Transform top;
     [SerializeField] Popup popup;
     [SerializeField] Compendium compendium;
+    [SerializeField] AudioSource wind;
+    [SerializeField] AudioSource whoosh;
     float charge = 0;
     private InputAction castInput;
     [SerializeField]bool lockRod = false;
@@ -47,7 +49,7 @@ public class Rod : MonoBehaviour
             return;
         }
         //Lock temp after failed cast
-        else if(castInput.WasPressedThisFrame() && bobber.inWater) {
+        else if(castInput.WasPressedThisFrame() && bobber.transform.position.y < 100) {
             bobber.GetComponent<Rigidbody>().isKinematic = true;
             lockRod = true;
             line.enabled = false;
@@ -59,13 +61,22 @@ public class Rod : MonoBehaviour
         {
             line.enabled = true;
             bobber.Launch(charge);
+            whoosh.Play();
             return;
         }
 
 
         //Wind
-        if(castInput.IsPressed() && !lockRod)charge += chargPerFrame;
-        else charge = 0;
+        if(castInput.IsPressed() && !lockRod)
+        {
+            charge += chargPerFrame;
+            wind.volume = 1;
+        }
+        else 
+        {
+            wind.volume = 0;
+            charge = 0;
+        }
         if(charge > maxCharge) charge = maxCharge;
         transform.localEulerAngles = new Vector3(-(maxAngle*(charge/maxCharge)),0,0);
     }
