@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ed7b1daf999b7075c8e0d141a20ecd91, type: 3}
-  m_Name: Sugar
+  m_Name: Actual Fish
   m_EditorClassIdentifier: Assembly-CSharp::Cookie
-  texture: {fileID: 2800000, guid: 4599ba75f549c8417b1bc80f223c11c7, type: 3}
-  cookieType: Sugar
-  cookieWorth: 4
-  ID: 2
+  texture: {fileID: 2800000, guid: e74b97963ed300dd5a8b29465ba32c13, type: 3}
+  cookieType: Actual Fish
+  cookieWorth: 6000
+  ID: 13
